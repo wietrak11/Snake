@@ -1,23 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a45eee00-c848-48f4-aba4-30afa8d8f1b7" name="Default Changelist" comment="Funkcjonalnosc start game">
-      <change afterPath="$PROJECT_DIR$/src/gameMenu/GameMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gameMenu/GameMenuController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gameMenu/gameMenu.fxml" afterDir="false" />
+    <list default="true" id="a45eee00-c848-48f4-aba4-30afa8d8f1b7" name="Default Changelist" comment="First push">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakeFX-project/menu/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakeFX-project/menu/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakeFX-project/menu/MenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakeFX-project/menu/MenuController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakeFX-project/menu/menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakeFX-project/menu/menu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SnakeFX-project/menu/menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SnakeFX-project/menu/menu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/menu/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/menu/fonts/AdventPro-Light.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/fonts/AdventPro-Light.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/menu/fonts/Gamer.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/fonts/Gamer.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/menu/img/icon.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/image/icon.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/menu/img/linkblue2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/image/linkblue2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/menu/menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/menu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/menu/menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/menu.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -75,14 +60,34 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="983218385">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="16" />
+          <entry key="txt" value="11" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="16" />
+          <entry key="PLAIN_TEXT" value="11" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gameMenu/gameMenu.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="510">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
             </state>
           </provider>
           <provider editor-type-id="JavaFX-Scene-Builder" />
@@ -95,8 +100,6 @@
               <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1082#1083#0" expanded="true" />
-                <element signature="e#1116#1117#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -168,23 +171,18 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="SnakeFX-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SnakeFX-project" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SnakeFX-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SnakeFX-project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="SnakeJavaFX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SnakeJavaFX" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -434,7 +432,28 @@
       <option name="project" value="LOCAL" />
       <updated>1552756458998</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="First push">
+      <created>1552768423103</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1552768423103</updated>
+    </task>
+    <task id="LOCAL-00026" summary="First push">
+      <created>1552770244892</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1552770244893</updated>
+    </task>
+    <task id="LOCAL-00027" summary="First push">
+      <created>1552770259572</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1552770259572</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TodoView">
@@ -447,9 +466,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2771855" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2803838" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -462,12 +481,12 @@
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="5" weight="0.329718" />
-      <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.50053304" side_tool="true" weight="0.329718" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.329718" />
+      <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.5010661" side_tool="true" visible="true" weight="0.329718" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.4989339" visible="true" weight="0.329718" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49946696" weight="0.329718" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.329718" />
       <window_info anchor="bottom" id="CheckStyle" order="10" weight="0.329718" />
-      <window_info anchor="bottom" x="30" y="469" width="1876" height="167" id="Run" order="11" sideWeight="0.49946696" visible="true" weight="0.4164859" />
+      <window_info anchor="bottom" x="30" y="469" width="1876" height="167" id="Run" order="11" sideWeight="0.49840087" weight="0.4164859" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -526,7 +545,8 @@
     <MESSAGE value="Ustawilem font wreszcie" />
     <MESSAGE value="Css buttonow" />
     <MESSAGE value="Funkcjonalnosc start game" />
-    <option name="LAST_COMMIT_MESSAGE" value="Funkcjonalnosc start game" />
+    <MESSAGE value="First push" />
+    <option name="LAST_COMMIT_MESSAGE" value="First push" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -653,8 +673,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gameMenu/gameMenu.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="510">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
@@ -665,8 +685,6 @@
           <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1082#1083#0" expanded="true" />
-            <element signature="e#1116#1117#0" expanded="true" />
           </folding>
         </state>
       </provider>
