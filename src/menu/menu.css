@@ -1,0 +1,55 @@
+#menuButton{
+    -fx-font-size: 23;
+    -fx-font-family: "Advent Pro Light";
+    -fx-pref-height: 50;
+    -fx-align-items: center;
+    -fx-background-radius: 0;
+    -fx-background-color: #DBB03D;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #FFCC00;
+    -fx-border-radius: 0;
+    -fx-effect: dropshadow(one-pass-box, #917528, 1, 1.0, 0, 4);
+    -fx-text-fill: #223D35;
+    -fx-pref-width: 200px;
+}
+#menuButton:focused {
+    -fx-font-size: 23;
+    -fx-font-family: "Advent Pro Light";
+    -fx-align-items: center;
+    -fx-background-radius: 0;
+    -fx-background-color: #DBB03D;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #FFCC00;
+    -fx-border-radius: 0;
+    -fx-effect: dropshadow(one-pass-box, #917528, 1, 1.0, 0, 4);
+}
+#menuButton:hover{
+    -fx-background-color: #FFCC47;
+}
+#menuButton:pressed {
+    -fx-translate-y: 3;
+    -fx-effect: dropshadow(one-pass-box, #917528, 1, 1.0, 0, 1);
+}
+#title{
+    -fx-font-size: 120;
+    -fx-font-family: "Gamer";
+    -fx-text-fill: #FE7F2D;
+}
+#aut{
+    -fx-font-family: "Advent Pro Light";
+    -fx-text-fill: #FE7F2D;
+    -fx-font-size: 16;
+    -fx-margin: 5px;
+}
+#linkedin{
+    -fx-background-image: url("/image/linkblue2.jpg");
+    -fx-background-size: 29 29;
+    -fx-pref-height: 30px;
+    -fx-pref-width: 30px;
+    -fx-border-color: #FE7F2D;
+    -fx-border-width: 1px 1px 1px 1px;
+    -fx-shadow-highlight-color: transparent;
+}
+.root {
+    -fx-background-color: #162630;
+}
