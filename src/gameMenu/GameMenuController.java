@@ -11,6 +11,7 @@ public class GameMenuController {
     public void startGame(MouseEvent mouseEvent) {
 
         try {
+            System.exit(1);
             new Game(stage).start();
         } catch (Exception e) {
             e.printStackTrace();
