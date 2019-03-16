@@ -1,3 +1,3 @@
 # Snake
 
-Simple snake game createing in JavaFX.
+Simple snake game creating in JavaFX.
