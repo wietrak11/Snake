@@ -7,20 +7,16 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import javafx.scene.paint.ImagePattern;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.canvas.*;
 import javafx.scene.paint.Color;
 import javafx.stage.WindowEvent;
-
 import java.util.Timer;
 import java.util.TimerTask;
-
-import static sun.plugin.javascript.navig.JSType.Image;
+import javafx.scene.shape.Rectangle;
 
 public class Game{
 
@@ -75,11 +71,18 @@ public class Game{
         canvas.setOnKeyPressed(e -> {
             if(e.getCode() == KeyCode.UP && snake.getDirection() != Direction.DOWN && stearing == false){
                 if(snake.getDirection() == Direction.LEFT){
-                    snake.addCurveUpRight();
+                    snake.addCurve("curveLeftUp");
+                } else if(snake.getDirection() == Direction.RIGHT){
+                    snake.addCurve("curveRightUp");
                 }
                 snake.setDirection(Direction.UP);
                 stearing = true;
             } else if(e.getCode() == KeyCode.DOWN && snake.getDirection() != Direction.UP && stearing == false){
+                if(snake.getDirection() == Direction.LEFT){
+                    snake.addCurve("curveLeftDown");
+                } else if(snake.getDirection() == Direction.RIGHT){
+                    snake.addCurve("curveLeftUp");
+                }
                 snake.setDirection(Direction.DOWN);
                 stearing = true;
             } else if(e.getCode() == KeyCode.LEFT && snake.getDirection() != Direction.RIGHT && stearing == false){
@@ -109,7 +112,6 @@ public class Game{
                     drawWhite();
                     drawSnake();
                     drawFood();
-                    drawPoints();
                 }
             }
         };
@@ -142,6 +144,7 @@ public class Game{
                         snake.addTailSegment();
                         board.addFood();
                         increasePoints();
+                        drawPoints();
                     }
 
                 }
@@ -198,13 +201,36 @@ public class Game{
             context.setFill(Color.PAPAYAWHIP);
             context.fillRect(tailSegment.getX(), tailSegment.getY(), snake.getBlockSize(), snake.getBlockSize());
         }
-        for(int i = 0; i < snake.getCurveUpRight().size(); i++){
-            context.setFill(Color.GREEN);
-            context.fillRect(snake.getCurveUpRight().get(i).getX(), snake.getCurveUpRight().get(i).getY(), snake.getBlockSize(), snake.getBlockSize());
-            if(snake.getTail().get(snake.getTail().size() - 1).equals(snake.getCurveUpRight().get(i))){
-                snake.getCurveUpRight().remove(i);
+        if(snake.getTail().size() == 0){
+
+        } else {
+            for(int i = 0; i < snake.getCurve().size(); i++){
+                Point[] keys = (Point[]) snake.getCurve().keySet().toArray(new Point[0]);
+                    if (snake.getCurve().containsValue("curveLeftUp")) {
+                        context.setFill(Color.GREEN);
+                        context.fillRect(keys[i].getX(), keys[i].getY(), snake.getBlockSize(), snake.getBlockSize());
+
+                    }
+                    if (snake.getCurve().containsValue("curveLeftDown")) {
+                        context.setFill(Color.PINK);
+                        context.fillRect(keys[i].getX(), keys[i].getY(), snake.getBlockSize(), snake.getBlockSize());
+                    }
+                    if (snake.getCurve().containsValue("curveRightUp")) {
+                        context.setFill(Color.YELLOW);
+                        context.fillRect(keys[i].getX(), keys[i].getY(), snake.getBlockSize(), snake.getBlockSize());
+                    }
+                    if (snake.getCurve().containsValue("curveRightDown")) {
+                        context.setFill(Color.BLACK);
+                        context.fillRect(keys[i].getX(), keys[i].getY(), snake.getBlockSize(), snake.getBlockSize());
+                    }
+                    if (snake.getTail().get(snake.getTail().size() - 1).equals(keys[i])) {
+                        snake.getCurve().remove(keys[i]);
+                }
             }
         }
+    }
+    private void colorBlock(Color color){
+        context.setFill(color);
     }
 
     private void drawFood() {

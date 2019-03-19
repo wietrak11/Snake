@@ -4,6 +4,7 @@ import com.sun.javafx.scene.traversal.Direction;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -14,6 +15,7 @@ public class Snake {
     private Direction direction;
     private Point headLocation = new Point(0, 0);
     private List<Point> tail = new ArrayList<Point>();
+    private HashMap<Point, String> curve = new HashMap<Point, String>();
     private List<Point> curveDownLeft = new ArrayList<Point>();
     private List<Point> curveDownRight = new ArrayList<Point>();
     private List<Point> curveUpLeft = new ArrayList<Point>();
@@ -96,36 +98,17 @@ public class Snake {
         System.out.println("Add tail segment");
     }
 
-    public void addCurveDownLeft(){
-        curveDownLeft.add(0, new Point(headLocation.getX(), headLocation.getY()));
-        System.out.println("Add curve down left segment");
-    }
-    public List<Point> getCurveDownLeft() {
-        return curveDownLeft;
+    public void addCurve(String curveDirection) {
+        if(tail.isEmpty()){
+
+        } else{
+            curve.put(new Point(headLocation.getX(), headLocation.getY()), curveDirection);
+            System.out.println("Curve added");
+        }
     }
 
-    public void addCurveDownRight(){
-        curveDownRight.add(0, new Point(headLocation.getX(), headLocation.getY()));
-        System.out.println("Add curve down right segment");
-    }
-    public List<Point> getCurveDownRight() {
-        return curveDownRight;
-    }
-
-    public void addCurveUpLeft(){
-        curveUpLeft.add(0, new Point(headLocation.getX(), headLocation.getY()));
-        System.out.println("Add curve up left segment");
-    }
-    public List<Point> getCurveUpLeft() {
-        return curveUpLeft;
-    }
-
-    public void addCurveUpRight(){
-        curveUpRight.add(0, new Point(headLocation.getX(), headLocation.getY()));
-        System.out.println("Add curve up right segment");
-    }
-    public List<Point> getCurveUpRight() {
-        return curveUpRight;
+    public HashMap<Point, String> getCurve(){
+        return curve;
     }
 
     public void setDirection(Direction myDirection) {
