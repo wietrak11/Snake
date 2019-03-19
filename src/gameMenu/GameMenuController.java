@@ -1,5 +1,6 @@
 package gameMenu;
 
+import buildMap.BuildMap;
 import game.Game;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -19,7 +20,11 @@ public class GameMenuController {
     }
 
     public void buildMap(MouseEvent mouseEvent) {
-
+        try {
+            new BuildMap(stage).start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void simulation(MouseEvent mouseEvent) {

@@ -34,6 +34,7 @@
     -fx-font-size: 120;
     -fx-font-family: "Gamer";
     -fx-text-fill: #FE7F2D;
+    -fx-effect: dropshadow(one-pass-box, #917528, 1, 1.0, 0, 4);
 }
 #aut{
     -fx-font-family: "Advent Pro Light";
@@ -49,6 +50,9 @@
     -fx-border-color: #FE7F2D;
     -fx-border-width: 1px 1px 1px 1px;
     -fx-shadow-highlight-color: transparent;
+}
+#board{
+    -fx-background-color: "lightgray";
 }
 .root {
     -fx-background-color: #162630;

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<GridPane alignment="CENTER" prefHeight="800" prefWidth="800"
+          stylesheets="@../menu/menu.css" xmlns="http://javafx.com/javafx/8.0.172-ea"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="buildMap.BuildMapController">
+    <rowConstraints>
+        <RowConstraints percentHeight="20" />
+        <RowConstraints percentHeight="75" />
+        <RowConstraints percentHeight="5" />
+    </rowConstraints>
+
+    <columnConstraints>
+        <ColumnConstraints percentWidth="5" />
+        <ColumnConstraints percentWidth="90" />
+        <ColumnConstraints percentWidth="5" />
+    </columnConstraints>
+
+    <GridPane fx:id="board" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="1" minHeight="600" minWidth="720" maxHeight="600" maxWidth="720">
+
+    </GridPane>
+
+</GridPane>
