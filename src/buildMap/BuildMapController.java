@@ -7,6 +7,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.event.EventHandler;
+import gameMenu.GameMenu;
 
 public class BuildMapController {
     private int BOARD_TILE_WIDTH = 40;
@@ -77,6 +78,13 @@ public class BuildMapController {
                 });
     }
 
+    public void back(MouseEvent mouseEvent){
+        try {
+            new GameMenu(stage).start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public void setStage(Stage stage){
         this.stage = stage;

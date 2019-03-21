@@ -26,8 +26,7 @@ public class BuildMap {
         buildMapControllerHandle.setMouseDraggedListener();
 
         Scene scene = new Scene(root,800,800);
-        scene.getStylesheets().add("menu/menu.css");
-        Font.loadFont(BuildMap.class.getResource("/fonts/Gamer.ttf").toExternalForm(),10);
+        scene.getStylesheets().add("buildMap/buildMap.css");
         Font.loadFont(BuildMap.class.getResource("/fonts/AdventPro-Light.ttf").toExternalForm(),10);
         stage.setTitle("Snake");
         stage.getIcons().add(new Image("/image/icon.jpg"));

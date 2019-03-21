@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
 <GridPane alignment="CENTER" prefHeight="800" prefWidth="800"
           stylesheets="@../menu/menu.css" xmlns="http://javafx.com/javafx/8.0.172-ea"
           xmlns:fx="http://javafx.com/fxml/1" fx:controller="buildMap.BuildMapController">
     <rowConstraints>
-        <RowConstraints percentHeight="4" />
-        <RowConstraints percentHeight="15" />
+        <RowConstraints percentHeight="2" />
+        <RowConstraints percentHeight="19" />
         <RowConstraints percentHeight="2" />
         <RowConstraints percentHeight="75" />
-        <RowConstraints percentHeight="4" />
+        <RowConstraints percentHeight="2" />
     </rowConstraints>
 
     <columnConstraints>
@@ -17,7 +18,7 @@
         <ColumnConstraints percentWidth="4" />
     </columnConstraints>
 
-    <GridPane GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="1" minHeight="120" minWidth="720" maxHeight="120" maxWidth="720">
+    <GridPane GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="1" minHeight="152" minWidth="720" maxHeight="120" maxWidth="720">
         <columnConstraints>
             <ColumnConstraints percentWidth="32" />
             <ColumnConstraints percentWidth="2" />
@@ -26,15 +27,23 @@
             <ColumnConstraints percentWidth="32" />
         </columnConstraints>
 
-        <Pane id="info" GridPane.columnIndex="0" minWidth="230.4" minHeight="120">
+        <rowConstraints>
+            <RowConstraints percentHeight="30" />
+            <RowConstraints percentHeight="6" />
+            <RowConstraints percentHeight="64" />
+        </rowConstraints>
+
+        <Button id="button" text="Back" onMouseClicked="#back" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" minWidth="230.4" />
+
+        <Pane id="info" GridPane.columnIndex="0" GridPane.rowIndex="2" minWidth="230.4" minHeight="84">
 
         </Pane>
 
-        <Pane id="info" GridPane.columnIndex="2" minWidth="230.4" minHeight="120">
+        <Pane id="info" GridPane.columnIndex="2" GridPane.rowSpan="3" minWidth="230.4" minHeight="120">
 
         </Pane>
 
-        <Pane id="info" GridPane.columnIndex="4" minWidth="230.4" minHeight="120">
+        <Pane id="info" GridPane.columnIndex="4" GridPane.rowSpan="3" minWidth="230.4" minHeight="120">
 
         </Pane>
 

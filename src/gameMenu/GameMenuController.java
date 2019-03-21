@@ -10,13 +10,11 @@ public class GameMenuController {
     Stage stage = new Stage();
 
     public void startGame(MouseEvent mouseEvent) {
-
         try {
             new Game(stage).start();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public void buildMap(MouseEvent mouseEvent) {
@@ -32,13 +30,11 @@ public class GameMenuController {
     }
 
     public void back(MouseEvent mouseEvent){
-
         try {
             new Menu(stage).start();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public void setStage(Stage stage){
