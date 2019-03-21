@@ -1,25 +1,17 @@
 package game;
 
 import com.sun.javafx.scene.traversal.Direction;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-
-import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.ListIterator;
 
-import static com.sun.javafx.scene.traversal.Direction.DOWN;
 
 public class Snake {
 
     private Direction direction;
     private Point headLocation = new Point(0, 0);
     private List<Point> tail = new ArrayList<Point>();
-    private HashMap<Point, String> curve = new HashMap<Point, String>();
-    private List<Point> curveDownLeft = new ArrayList<Point>();
-    private List<Point> curveDownRight = new ArrayList<Point>();
-    private List<Point> curveUpLeft = new ArrayList<Point>();
-    private List<Point> curveUpRight = new ArrayList<Point>();
+    public  ListIterator<Point> it = getTail().listIterator();
     private int height;
     private int width;
     private int blockSize;
@@ -96,19 +88,6 @@ public class Snake {
     public void addTailSegment() {
         tail.add(0, new Point(headLocation.getX(), headLocation.getY()));
         System.out.println("Add tail segment");
-    }
-
-    public void addCurve(String curveDirection) {
-        if(tail.isEmpty()){
-
-        } else{
-            curve.put(new Point(headLocation.getX(), headLocation.getY()), curveDirection);
-            System.out.println("Curve added");
-        }
-    }
-
-    public HashMap<Point, String> getCurve(){
-        return curve;
     }
 
     public void setDirection(Direction myDirection) {

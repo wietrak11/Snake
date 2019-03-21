@@ -14,14 +14,15 @@ import javafx.stage.Stage;
 import javafx.scene.canvas.*;
 import javafx.scene.paint.Color;
 import javafx.stage.WindowEvent;
-import java.util.Timer;
-import java.util.TimerTask;
+
+import java.util.*;
+
 import javafx.scene.shape.Rectangle;
 
 public class Game{
 
     private static final long TASK_UPDATE_PERIOD_MS = 70;
-    private static final long TASK_UPDATE_DELAY_MS = 100;
+    private static final long TASK_UPDATE_DELAY_MS = TASK_UPDATE_PERIOD_MS;
 
 
     private static final int WINDOW_HEIGHT = 800;
@@ -70,19 +71,9 @@ public class Game{
         canvas.setFocusTraversable(true);
         canvas.setOnKeyPressed(e -> {
             if(e.getCode() == KeyCode.UP && snake.getDirection() != Direction.DOWN && stearing == false){
-                if(snake.getDirection() == Direction.LEFT){
-                    snake.addCurve("curveLeftUp");
-                } else if(snake.getDirection() == Direction.RIGHT){
-                    snake.addCurve("curveRightUp");
-                }
                 snake.setDirection(Direction.UP);
                 stearing = true;
             } else if(e.getCode() == KeyCode.DOWN && snake.getDirection() != Direction.UP && stearing == false){
-                if(snake.getDirection() == Direction.LEFT){
-                    snake.addCurve("curveLeftDown");
-                } else if(snake.getDirection() == Direction.RIGHT){
-                    snake.addCurve("curveLeftUp");
-                }
                 snake.setDirection(Direction.DOWN);
                 stearing = true;
             } else if(e.getCode() == KeyCode.LEFT && snake.getDirection() != Direction.RIGHT && stearing == false){
@@ -193,52 +184,71 @@ public class Game{
     }
 
     private void drawSnake() {
+        List<Point> tail = snake.getTail();
         javafx.scene.image.Image head = new Image("/game/snakehead.png");
         javafx.scene.image.Image body = new Image("/game/snakebody.png");
         context.setFill(Color.PAPAYAWHIP);
         context.fillRect(snake.getHeadLocation().getX(), snake.getHeadLocation().getY(), snake.getBlockSize(), snake.getBlockSize());
-        for (Point tailSegment : snake.getTail()) {
-            context.setFill(Color.PAPAYAWHIP);
-            context.fillRect(tailSegment.getX(), tailSegment.getY(), snake.getBlockSize(), snake.getBlockSize());
-        }
-        if(snake.getTail().size() == 0){
 
-        } else {
-            for(int i = 0; i < snake.getCurve().size(); i++){
-                Point[] keys = (Point[]) snake.getCurve().keySet().toArray(new Point[0]);
-                    if (snake.getCurve().containsValue("curveLeftUp")) {
-                        context.setFill(Color.GREEN);
-                        context.fillRect(keys[i].getX(), keys[i].getY(), snake.getBlockSize(), snake.getBlockSize());
-
-                    }
-                    if (snake.getCurve().containsValue("curveLeftDown")) {
-                        context.setFill(Color.PINK);
-                        context.fillRect(keys[i].getX(), keys[i].getY(), snake.getBlockSize(), snake.getBlockSize());
-                    }
-                    if (snake.getCurve().containsValue("curveRightUp")) {
-                        context.setFill(Color.YELLOW);
-                        context.fillRect(keys[i].getX(), keys[i].getY(), snake.getBlockSize(), snake.getBlockSize());
-                    }
-                    if (snake.getCurve().containsValue("curveRightDown")) {
+        for(int i=0; i<snake.getTail().size();i++){
+            if(i==0){
+                context.setFill(Color.BLACK);
+                context.fillRect(tail.get(i).getX(), tail.get(i).getY(), snake.getBlockSize(), snake.getBlockSize());
+            } else {
+                if(i < tail.size() - 1){
+                    if (curveLeftTop(tail, i)) {
+                        drawRect(Color.GREEN, tail.get(i), i);
+                    } else if (curveLeftBottom(tail, i)) {
+                        drawRect(Color.YELLOW, tail.get(i), i);
+                    } else if (curveRightTop(tail, i)) {
+                        drawRect(Color.YELLOWGREEN, tail.get(i), i);
+                    } else if (CurveRightBottom(tail, i)) {
+                        drawRect(Color.BLUE, tail.get(i), i);
+                    } else {
                         context.setFill(Color.BLACK);
-                        context.fillRect(keys[i].getX(), keys[i].getY(), snake.getBlockSize(), snake.getBlockSize());
+                        context.fillRect(tail.get(i).getX(), tail.get(i).getY(), snake.getBlockSize(), snake.getBlockSize());
                     }
-                    if (snake.getTail().get(snake.getTail().size() - 1).equals(keys[i])) {
-                        snake.getCurve().remove(keys[i]);
+                } else {
+                    context.setFill(Color.BLACK);
+                    context.fillRect(tail.get(i).getX(), tail.get(i).getY(), snake.getBlockSize(), snake.getBlockSize());
+                    System.out.println("test");
+
                 }
             }
         }
     }
-    private void colorBlock(Color color){
+
+    private boolean CurveRightBottom(List<Point> tail, int i) {
+        return tail.get(i).getX() + GRID_BLOCK_SIZE == tail.get(i - 1).getX() && tail.get(i).getY() - GRID_BLOCK_SIZE == tail.get(i + 1).getY();
+
+    }
+
+    private boolean curveRightTop(List<Point> tail, int i) {
+        return tail.get(i).getX() + GRID_BLOCK_SIZE == tail.get(i - 1).getX() && tail.get(i).getY() + GRID_BLOCK_SIZE == tail.get(i + 1).getY();
+
+    }
+
+    private boolean curveLeftBottom(List<Point> tail, int i) {
+        return tail.get(i).getX() - GRID_BLOCK_SIZE == tail.get(i - 1).getX() && tail.get(i).getY() - GRID_BLOCK_SIZE == tail.get(i + 1).getY();
+
+    }
+
+    private boolean curveLeftTop(List<Point> tail, int i) {
+        return tail.get(i).getX() - GRID_BLOCK_SIZE == tail.get(i - 1).getX() && tail.get(i).getY() + GRID_BLOCK_SIZE == tail.get(i + 1).getY();
+    }
+
+    private void checkNodePosition(){
+
+    }
+
+    private void drawRect(Color color, Point tail, int i){
         context.setFill(color);
+        context.fillRect(tail.getX(), tail.getY(), snake.getBlockSize(), snake.getBlockSize());
     }
 
     private void drawFood() {
         context.setFill(Color.GREEN);
         context.fillOval(board.getFood().getLocation().getX(), board.getFood().getLocation().getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
     }
-
-
-
 
 }
