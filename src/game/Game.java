@@ -9,11 +9,16 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.scene.canvas.*;
 import javafx.scene.paint.Color;
 import javafx.stage.WindowEvent;
+
+import java.awt.*;
 import java.util.*;
+import java.util.List;
+
 public class Game{
 
     private static final long TASK_UPDATE_PERIOD_MS = 70;
@@ -59,7 +64,6 @@ public class Game{
         board = new Board(WINDOW_WIDTH, WINDOW_HEIGHT, GRID_BLOCK_SIZE);
         snake = new Snake(WINDOW_WIDTH, WINDOW_HEIGHT, GRID_BLOCK_SIZE);
         snake.setHeadLocation(0, 0);
-
 
         drawPoints();
 
