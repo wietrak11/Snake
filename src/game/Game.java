@@ -27,7 +27,7 @@ public class Game{
 
     private static final int WINDOW_HEIGHT = 800;
     private static final int WINDOW_WIDTH = 800;
-    private static final int BLOCK_COUNT = 40;
+    private static final int BLOCK_COUNT = 20;
     private static final int GRID_BLOCK_SIZE = WINDOW_HEIGHT / BLOCK_COUNT;
 
 
@@ -59,13 +59,13 @@ public class Game{
 
         gameStage.setTitle("Snake");
         Group root = new Group();
-        Canvas canvas = new Canvas(WINDOW_WIDTH,WINDOW_HEIGHT + 2*GRID_BLOCK_SIZE);
+        Canvas canvas = new Canvas(WINDOW_WIDTH,WINDOW_HEIGHT + 50);
         context = canvas.getGraphicsContext2D();
         root.getChildren().add(canvas);
         Scene scene = new Scene(root);
         board = new Board(WINDOW_WIDTH, WINDOW_HEIGHT, GRID_BLOCK_SIZE);
         snake = new Snake(WINDOW_WIDTH, WINDOW_HEIGHT, GRID_BLOCK_SIZE);
-        snake.setHeadLocation(100, 100);
+        snake.setHeadLocation(0, 0);
 
 
         drawPoints();
