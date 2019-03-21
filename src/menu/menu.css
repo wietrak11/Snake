@@ -54,6 +54,13 @@
 #board{
     -fx-background-color: "lightgray";
 }
+#info{
+    -fx-background-color: #DBB03D;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #FFCC00;
+    -fx-border-radius: 0;
+    -fx-effect: dropshadow(one-pass-box, #917528, 1, 1.0, 0, 4);
+}
 .root {
     -fx-background-color: #162630;
 }
