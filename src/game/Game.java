@@ -3,25 +3,20 @@ import com.sun.javafx.scene.traversal.Direction;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import javafx.stage.Screen;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
 import javafx.scene.canvas.*;
 import javafx.scene.paint.Color;
 import javafx.stage.WindowEvent;
-
 import java.util.*;
-
-import javafx.scene.shape.Rectangle;
-
 public class Game{
 
-    private static final long TASK_UPDATE_PERIOD_MS = 80;
+    private static final long TASK_UPDATE_PERIOD_MS = 70;
     private static final long TASK_UPDATE_DELAY_MS = TASK_UPDATE_PERIOD_MS;
 
 
@@ -32,7 +27,6 @@ public class Game{
 
 
 
-    private GraphicsContext graphicsContext;
     private Stage gameStage;
     private GraphicsContext context;
     private Snake snake;
@@ -40,7 +34,6 @@ public class Game{
     private AnimationTimer animationTimer;
     private Timer timer;
     private TimerTask task;
-    Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
     private int points;
     private boolean stearing = true;
 
@@ -58,8 +51,8 @@ public class Game{
 */
 
         gameStage.setTitle("Snake");
-        Group root = new Group();
-        Canvas canvas = new Canvas(WINDOW_WIDTH,WINDOW_HEIGHT + 50);
+        GridPane root = new GridPane();
+        Canvas canvas = new Canvas(WINDOW_WIDTH,WINDOW_HEIGHT + 100);
         context = canvas.getGraphicsContext2D();
         root.getChildren().add(canvas);
         Scene scene = new Scene(root);
@@ -164,7 +157,7 @@ public class Game{
         context.setFill(Color.BLACK);
         context.fillRect(0,WINDOW_HEIGHT,WINDOW_WIDTH,WINDOW_HEIGHT);
         context.setFill(Color.WHITE);
-        context.fillText(Integer.toString(points), Math.round(WINDOW_WIDTH  / 2),WINDOW_HEIGHT + GRID_BLOCK_SIZE + 3);
+        context.fillText(Integer.toString(points), Math.round(WINDOW_WIDTH  / 2),WINDOW_HEIGHT + 50);
     }
 
     private void drawWhite(){
@@ -190,7 +183,7 @@ public class Game{
         List<Point> tail = snake.getTail();
         javafx.scene.image.Image head = new Image("/game/snakehead.png");
         javafx.scene.image.Image body = new Image("/game/snakebody.png");
-        context.setFill(Color.PAPAYAWHIP);
+        context.setFill(new ImagePattern(head));
         context.fillRect(snake.getHeadLocation().getX(), snake.getHeadLocation().getY(), snake.getBlockSize(), snake.getBlockSize());
 
         for(int i=0; i<snake.getTail().size();i++){
@@ -250,6 +243,12 @@ public class Game{
     private void drawFood() {
         context.setFill(Color.GREEN);
         context.fillOval(board.getFood().getLocation().getX(), board.getFood().getLocation().getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
+        for(int i=0; i<snake.getTail().size();i++){
+            if(board.getFood().getLocation().getX() == snake.getTail().get(i).getX() && board.getFood().getLocation().getY() == snake.getTail().get(i).getY() ){
+                board.addFood();
+                System.out.println("Nowe jedzenie");
+            }
+        }
     }
 
 }

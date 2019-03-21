@@ -36,6 +36,9 @@ public class Board {
 
         y = Math.round(y/pixelsPerSquare) * pixelsPerSquare;
         x = Math.round(x/pixelsPerSquare) * pixelsPerSquare;
+
+
+
         food = new Food(x, y);
     }
 
