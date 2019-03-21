@@ -21,7 +21,7 @@ import javafx.scene.shape.Rectangle;
 
 public class Game{
 
-    private static final long TASK_UPDATE_PERIOD_MS = 70;
+    private static final long TASK_UPDATE_PERIOD_MS = 80;
     private static final long TASK_UPDATE_DELAY_MS = TASK_UPDATE_PERIOD_MS;
 
 

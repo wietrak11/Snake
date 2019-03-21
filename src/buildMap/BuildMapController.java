@@ -42,14 +42,14 @@ public class BuildMapController {
                     public void handle(MouseEvent me) {
                         if(me.getButton().equals(MouseButton.PRIMARY)){
                             tileArray[(int) (me.getX() / TILE_WIDTH)][(int) (me.getY() / TILE_HEIGHT)].getPane().setStyle("-fx-background-color: #162630;" +
-                                    "-fx-border-color: black;" +
-                                    "-fx-border-width: 0.3px 0.3px 0.3px 0.3px;");
+                                                                                                                          "-fx-border-color: black;" +
+                                                                                                                          "-fx-border-width: 0.3px 0.3px 0.3px 0.3px;");
                             tileArray[(int) (me.getX() / TILE_WIDTH)][(int) (me.getY() / TILE_HEIGHT)].setState(1);
                         }
                         if(me.getButton().equals(MouseButton.SECONDARY)) {
                             tileArray[(int) (me.getX() / TILE_WIDTH)][(int) (me.getY() / TILE_HEIGHT)].getPane().setStyle("-fx-background-color: lightgrey;" +
-                                    "-fx-border-color: black;" +
-                                    "-fx-border-width: 0.3px 0.3px 0.3px 0.3px;");
+                                                                                                                          "-fx-border-color: black;" +
+                                                                                                                          "-fx-border-width: 0.3px 0.3px 0.3px 0.3px;");
                             tileArray[(int) (me.getX() / TILE_WIDTH)][(int) (me.getY() / TILE_HEIGHT)].setState(0);
                         }
                     }
@@ -63,14 +63,14 @@ public class BuildMapController {
                         if(me.getX()>=0 && me.getX()<720 && me.getY()>=0 && me.getY()<600){
                             if(me.isPrimaryButtonDown()) {
                                 tileArray[(int) (me.getX() / TILE_WIDTH)][(int) (me.getY() / TILE_HEIGHT)].getPane().setStyle("-fx-background-color: #162630;" +
-                                        "-fx-border-color: black;" +
-                                        "-fx-border-width: 0.3px 0.3px 0.3px 0.3px;");
+                                                                                                                              "-fx-border-color: black;" +
+                                                                                                                              "-fx-border-width: 0.3px 0.3px 0.3px 0.3px;");
                                 tileArray[(int) (me.getX() / TILE_WIDTH)][(int) (me.getY() / TILE_HEIGHT)].setState(1);
                             }
                             if(me.isSecondaryButtonDown()) {
                                 tileArray[(int) (me.getX() / TILE_WIDTH)][(int) (me.getY() / TILE_HEIGHT)].getPane().setStyle("-fx-background-color: lightgrey;" +
-                                        "-fx-border-color: black;" +
-                                        "-fx-border-width: 0.3px 0.3px 0.3px 0.3px;");
+                                                                                                                              "-fx-border-color: black;" +
+                                                                                                                              "-fx-border-width: 0.3px 0.3px 0.3px 0.3px;");
                                 tileArray[(int) (me.getX() / TILE_WIDTH)][(int) (me.getY() / TILE_HEIGHT)].setState(0);
                             }
                         }
