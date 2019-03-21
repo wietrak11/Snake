@@ -205,7 +205,7 @@ public class Game{
                         context.fillRect(tail.get(i).getX(), tail.get(i).getY(), snake.getBlockSize(), snake.getBlockSize());
                     }
                 } else {
-                    context.setFill(Color.BLACK);
+                    context.setFill(new ImagePattern(body));
                     context.fillRect(tail.get(i).getX(), tail.get(i).getY(), snake.getBlockSize(), snake.getBlockSize());
                 }
             }
