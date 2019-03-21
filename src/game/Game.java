@@ -21,16 +21,18 @@ import javafx.scene.shape.Rectangle;
 
 public class Game{
 
-    private static final long TASK_UPDATE_PERIOD_MS = 100;
+    private static final long TASK_UPDATE_PERIOD_MS = 70;
     private static final long TASK_UPDATE_DELAY_MS = TASK_UPDATE_PERIOD_MS;
 
 
     private static final int WINDOW_HEIGHT = 800;
     private static final int WINDOW_WIDTH = 800;
-    private static final int BLOCK_COUNT = 10;
+    private static final int BLOCK_COUNT = 20;
     private static final int GRID_BLOCK_SIZE = WINDOW_HEIGHT / BLOCK_COUNT;
 
 
+
+    private GraphicsContext graphicsContext;
     private Stage gameStage;
     private GraphicsContext context;
     private Snake snake;
@@ -57,7 +59,7 @@ public class Game{
 
         gameStage.setTitle("Snake");
         Group root = new Group();
-        Canvas canvas = new Canvas(WINDOW_WIDTH,WINDOW_HEIGHT + 100);
+        Canvas canvas = new Canvas(WINDOW_WIDTH,WINDOW_HEIGHT + 50);
         context = canvas.getGraphicsContext2D();
         root.getChildren().add(canvas);
         Scene scene = new Scene(root);
@@ -248,12 +250,6 @@ public class Game{
     private void drawFood() {
         context.setFill(Color.GREEN);
         context.fillOval(board.getFood().getLocation().getX(), board.getFood().getLocation().getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
-        for(int i=0; i<snake.getTail().size();i++){
-            if(board.getFood().getLocation().getX() == snake.getTail().get(i).getX() && board.getFood().getLocation().getY() == snake.getTail().get(i).getY() ){
-                board.addFood();
-                System.out.println("Nowe jedzenie");
-            }
-        }
     }
 
 }

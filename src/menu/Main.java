@@ -11,7 +11,7 @@ public class Main extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        new buildMap.BuildMap(primaryStage).start();
+        new menu.Menu(primaryStage).start();
     }
 
 }
