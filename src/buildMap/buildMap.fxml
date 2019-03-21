@@ -34,7 +34,6 @@
         </rowConstraints>
 
         <Button id="button" text="Back" onMouseClicked="#back" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" minWidth="230.4" />
-
         <Pane id="info" GridPane.columnIndex="0" GridPane.rowIndex="2" minWidth="230.4" minHeight="84">
 
         </Pane>
