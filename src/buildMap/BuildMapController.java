@@ -19,7 +19,6 @@ public class BuildMapController {
     private Tile[][] tileArray = new Tile[BOARD_TILE_WIDTH][BOARD_TILE_HEIGHT];
 
     public void setGrid(){
-
         for(int i = 0; i< BOARD_TILE_WIDTH; i++){
             for(int j = 0; j< BOARD_TILE_HEIGHT; j++){
                 Tile tile = new Tile(new Pane(), i, j, 0);
