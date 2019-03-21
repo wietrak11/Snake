@@ -27,7 +27,8 @@ public class Game{
 
     private static final int WINDOW_HEIGHT = 800;
     private static final int WINDOW_WIDTH = 800;
-    private static final int GRID_BLOCK_SIZE = 20;
+    private static final int BLOCK_COUNT = 40;
+    private static final int GRID_BLOCK_SIZE = WINDOW_HEIGHT / BLOCK_COUNT;
 
 
 
@@ -66,6 +67,8 @@ public class Game{
         snake = new Snake(WINDOW_WIDTH, WINDOW_HEIGHT, GRID_BLOCK_SIZE);
         snake.setHeadLocation(100, 100);
 
+
+        drawPoints();
 
 
         canvas.setFocusTraversable(true);
@@ -211,8 +214,6 @@ public class Game{
                 } else {
                     context.setFill(Color.BLACK);
                     context.fillRect(tail.get(i).getX(), tail.get(i).getY(), snake.getBlockSize(), snake.getBlockSize());
-                    System.out.println("test");
-
                 }
             }
         }
