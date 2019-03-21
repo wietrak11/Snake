@@ -183,12 +183,13 @@ public class Game{
         List<Point> tail = snake.getTail();
         javafx.scene.image.Image head = new Image("/game/snakehead.png");
         javafx.scene.image.Image body = new Image("/game/snakebody.png");
+        javafx.scene.image.Image snakeTail = new Image("/game/snaketail.png");
         context.setFill(new ImagePattern(head));
         context.fillRect(snake.getHeadLocation().getX(), snake.getHeadLocation().getY(), snake.getBlockSize(), snake.getBlockSize());
 
         for(int i=0; i<snake.getTail().size();i++){
             if(i==0){
-                context.setFill(Color.BLACK);
+                context.setFill(new ImagePattern(body));
                 context.fillRect(tail.get(i).getX(), tail.get(i).getY(), snake.getBlockSize(), snake.getBlockSize());
             } else {
                 if(i < tail.size() - 1){
@@ -201,11 +202,11 @@ public class Game{
                     } else if (CurveRightBottom(tail, i)) {
                         drawRect(Color.BLUE, tail.get(i), i);
                     } else {
-                        context.setFill(Color.BLACK);
+                        context.setFill(new ImagePattern(body));
                         context.fillRect(tail.get(i).getX(), tail.get(i).getY(), snake.getBlockSize(), snake.getBlockSize());
                     }
                 } else {
-                    context.setFill(Color.BLACK);
+                    context.setFill(new ImagePattern(snakeTail));
                     context.fillRect(tail.get(i).getX(), tail.get(i).getY(), snake.getBlockSize(), snake.getBlockSize());
                 }
             }
