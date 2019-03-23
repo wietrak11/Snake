@@ -8,7 +8,7 @@
 #board{
     -fx-background-color: "lightgray";
 }
-#button{
+#backButton{
     -fx-font-size: 22;
     -fx-font-family: "Advent Pro Light";
     -fx-align-items: center;
@@ -19,9 +19,9 @@
     -fx-border-radius: 0;
     -fx-effect: dropshadow(one-pass-box, #7e3100, 1, 1.0, 0, 4);
     -fx-text-fill: #223D35;
-    -fx-translate-y: -2;
+    -fx-translate-y: 0;
 }
-#button:focused {
+#backButton:focused {
     -fx-font-size: 22;
     -fx-font-family: "Advent Pro Light";
     -fx-align-items: center;
@@ -32,11 +32,11 @@
     -fx-border-radius: 0;
     -fx-effect: dropshadow(one-pass-box, #7e3100, 1, 1.0, 0, 4);
 }
-#button:hover{
+#backButton:hover{
     -fx-background-color: #fe9450;
 }
-#button:pressed {
-    -fx-translate-y: 1;
+#backButton:pressed {
+    -fx-translate-y: 3;
     -fx-effect: dropshadow(one-pass-box, #7e3100, 1, 1.0, 0, 1);
 }
 #infoText{
@@ -56,10 +56,10 @@
     -fx-border-radius: 0;
     -fx-effect: dropshadow(one-pass-box, #917528, 1, 1.0, 0, 4);
     -fx-text-fill: #223D35;
-    -fx-translate-y: 0;
+    -fx-translate-y: -1;
 }
 #sizeButton:focused {
-    -fx-font-size: 23;
+    -fx-font-size: 18;
     -fx-font-family: "Advent Pro Light";
     -fx-align-items: center;
     -fx-background-radius: 0;
@@ -73,6 +73,68 @@
     -fx-background-color: #FFCC47;
 }
 #sizeButton:pressed {
+    -fx-translate-y: 2;
+    -fx-effect: dropshadow(one-pass-box, #917528, 1, 1.0, 0, 1);
+}
+#button{
+    -fx-font-size: 22;
+    -fx-font-family: "Advent Pro Light";
+    -fx-align-items: center;
+    -fx-background-radius: 0;
+    -fx-background-color: #DBB03D;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #FFCC00;
+    -fx-border-radius: 0;
+    -fx-effect: dropshadow(one-pass-box, #917528, 1, 1.0, 0, 4);
+    -fx-text-fill: #223D35;
+    -fx-translate-y: 0;
+}
+#button:focused {
+    -fx-font-size: 22;
+    -fx-font-family: "Advent Pro Light";
+    -fx-align-items: center;
+    -fx-background-radius: 0;
+    -fx-background-color: #DBB03D;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #FFCC00;
+    -fx-border-radius: 0;
+    -fx-effect: dropshadow(one-pass-box, #917528, 1, 1.0, 0, 4);
+}
+#button:hover{
+    -fx-background-color: #FFCC47;
+}
+#button:pressed {
     -fx-translate-y: 3;
+    -fx-effect: dropshadow(one-pass-box, #917528, 1, 1.0, 0, 1);
+}
+#saveButton{
+    -fx-font-size: 22;
+    -fx-font-family: "Advent Pro Light";
+    -fx-align-items: center;
+    -fx-background-radius: 0;
+    -fx-background-color: #DBB03D;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #FFCC00;
+    -fx-border-radius: 0;
+    -fx-effect: dropshadow(one-pass-box, #917528, 1, 1.0, 0, 4);
+    -fx-text-fill: #223D35;
+    -fx-translate-y: -1.5;
+}
+#saveButton:focused {
+    -fx-font-size: 22;
+    -fx-font-family: "Advent Pro Light";
+    -fx-align-items: center;
+    -fx-background-radius: 0;
+    -fx-background-color: #DBB03D;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #FFCC00;
+    -fx-border-radius: 0;
+    -fx-effect: dropshadow(one-pass-box, #917528, 1, 1.0, 0, 4);
+}
+#saveButton:hover{
+    -fx-background-color: #FFCC47;
+}
+#saveButton:pressed {
+    -fx-translate-y: 1.5;
     -fx-effect: dropshadow(one-pass-box, #917528, 1, 1.0, 0, 1);
 }

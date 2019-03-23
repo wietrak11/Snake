@@ -86,6 +86,51 @@ public class BuildMapController {
         }
     }
 
+    public void set20(MouseEvent mouseEvent){
+        if(BOARD_TILE_WIDTH!=20 && BOARD_TILE_HEIGHT!=20){
+            BOARD_TILE_HEIGHT=20;
+            BOARD_TILE_WIDTH=20;
+            TILE_WIDTH = 720/BOARD_TILE_WIDTH;
+            TILE_HEIGHT = 600/BOARD_TILE_HEIGHT;
+            board.getChildren().clear();
+            setGrid();
+        }
+    }
+
+    public void set30(MouseEvent mouseEvent){
+        if(BOARD_TILE_WIDTH!=30 && BOARD_TILE_HEIGHT!=30){
+            BOARD_TILE_HEIGHT=30;
+            BOARD_TILE_WIDTH=30;
+            TILE_WIDTH = 720/BOARD_TILE_WIDTH;
+            TILE_HEIGHT = 600/BOARD_TILE_HEIGHT;
+            board.getChildren().clear();
+            setGrid();
+        }
+    }
+
+    public void set40(MouseEvent mouseEvent){
+        if(BOARD_TILE_WIDTH!=40 && BOARD_TILE_HEIGHT!=40){
+            BOARD_TILE_HEIGHT=40;
+            BOARD_TILE_WIDTH=40;
+            TILE_WIDTH = 720/BOARD_TILE_WIDTH;
+            TILE_HEIGHT = 600/BOARD_TILE_HEIGHT;
+            board.getChildren().clear();
+            setGrid();
+        }
+    }
+
+    public void setSnake(MouseEvent mouseEvent){
+
+    }
+
+    public void load(MouseEvent mouseEvent){
+
+    }
+
+    public void save(MouseEvent mouseEvent){
+
+    }
+
     public void setStage(Stage stage){
         this.stage = stage;
     }
