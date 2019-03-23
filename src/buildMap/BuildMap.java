@@ -31,6 +31,8 @@ public class BuildMap {
         stage.setTitle("Snake");
         stage.getIcons().add(new Image("/image/icon.jpg"));
         stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setResizable(false);
         stage.show();
     }
 }

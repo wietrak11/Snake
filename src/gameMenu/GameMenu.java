@@ -29,6 +29,8 @@ public class GameMenu {
         menuStage.setTitle("Snake");
         menuStage.getIcons().add(new Image("/image/icon.jpg"));
         menuStage.setScene(scene);
+        menuStage.centerOnScreen();
+        menuStage.setResizable(false);
         menuStage.show();
     }
 }
