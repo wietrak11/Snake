@@ -201,18 +201,10 @@ public class Game{
         javafx.scene.image.Image head = new Image("/game/snakehead.png");
         javafx.scene.image.Image body = new Image("/game/snakebody.png");
         javafx.scene.image.Image snakeTail = new Image("/game/snaketail.png");
-        if(snake.getDirection() == Direction.UP){
-            drawRotatedImage(context, head, 180, snake.getHeadLocation().getX(),snake.getHeadLocation().getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
-        } else if(snake.getDirection() == Direction.DOWN){
-            drawRotatedImage(context, head, 0, snake.getHeadLocation().getX(),snake.getHeadLocation().getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
-        } else if(snake.getDirection() == Direction.RIGHT){
-            drawRotatedImage(context, head, 270, snake.getHeadLocation().getX(),snake.getHeadLocation().getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
-        } else if(snake.getDirection() == Direction.LEFT){
-            drawRotatedImage(context, head, 90, snake.getHeadLocation().getX(),snake.getHeadLocation().getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
-        }
+        checkDrawDirection(head, snake.getHeadLocation());
         for(int i=0; i<snake.getTail().size();i++){
             if(i==0){
-                drawRotatedImage(context, body, 0, tail.get(i).getX(), tail.get(i).getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
+                checkDrawDirection(body, tail.get(i));
             } else {
                 if(i < tail.size() - 1){
                     if (curveLeftTop(tail, i)) {
@@ -224,18 +216,32 @@ public class Game{
                     } else if (CurveRightBottom(tail, i)) {
                         drawRect(Color.BLUE, tail.get(i), i);
                     } else {
-                        context.setFill(new ImagePattern(body));
-                        context.fillRect(tail.get(i).getX(), tail.get(i).getY(), snake.getBlockSize(), snake.getBlockSize());
+                        /*context.setFill(new ImagePattern(body));
+                        context.fillRect(tail.get(i).getX(), tail.get(i).getY(), snake.getBlockSize(), snake.getBlockSize());*/
                     }
 
-                    if (tail.get(i).getX() == tail.get(i - 1).getX() && tail.get(i).getY() == tail.get(i + 1).getY()) {
+                    if (tail.get(i).getX() - GRID_BLOCK_SIZE == tail.get(i - 1).getX() && tail.get(i).getY() == tail.get(i + 1).getY() || tail.get(i).getX() + GRID_BLOCK_SIZE == tail.get(i - 1).getX() && tail.get(i).getY() == tail.get(i + 1).getY() ) {
                         drawRotatedImage(context, body, 90, tail.get(i).getX(), tail.get(i).getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
+                    } else if(tail.get(i).getX() == tail.get(i - 1).getX() && tail.get(i).getY() - GRID_BLOCK_SIZE == tail.get(i + 1).getY() || tail.get(i).getX() == tail.get(i - 1).getX() && tail.get(i).getY() + GRID_BLOCK_SIZE == tail.get(i + 1).getY() ) {
+                        drawRotatedImage(context, body, 0, tail.get(i).getX(), tail.get(i).getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
                     }
                 } else {
                     context.setFill(new ImagePattern(snakeTail));
                     context.fillRect(tail.get(i).getX(), tail.get(i).getY(), snake.getBlockSize(), snake.getBlockSize());
                 }
             }
+        }
+    }
+
+    private void checkDrawDirection(Image head, Point headLocation) {
+        if (snake.getDirection() == Direction.UP) {
+            drawRotatedImage(context, head, 180, headLocation.getX(), headLocation.getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
+        } else if (snake.getDirection() == Direction.DOWN) {
+            drawRotatedImage(context, head, 0, headLocation.getX(), headLocation.getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
+        } else if (snake.getDirection() == Direction.RIGHT) {
+            drawRotatedImage(context, head, 270, headLocation.getX(), headLocation.getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
+        } else if (snake.getDirection() == Direction.LEFT) {
+            drawRotatedImage(context, head, 90, headLocation.getX(), headLocation.getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
         }
     }
 
