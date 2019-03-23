@@ -6,28 +6,27 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.scene.canvas.*;
 import javafx.scene.paint.Color;
 import javafx.stage.WindowEvent;
-
-import java.awt.*;
 import java.util.*;
 import java.util.List;
+import javafx.scene.transform.Rotate;
+import javafx.scene.image.Image;
 
 public class Game{
 
     private static final long TASK_UPDATE_PERIOD_MS = 70;
     private static final long TASK_UPDATE_DELAY_MS = TASK_UPDATE_PERIOD_MS;
 
-
     private static final int WINDOW_HEIGHT = 800;
     private static final int WINDOW_WIDTH = 800;
-    private static final int BLOCK_COUNT = 20;
+    private static final int BLOCK_COUNT = 40;
     private static final int GRID_BLOCK_SIZE = WINDOW_HEIGHT / BLOCK_COUNT;
 
 
@@ -67,10 +66,11 @@ public class Game{
 
         drawPoints();
 
-
         canvas.setFocusTraversable(true);
         canvas.setOnKeyPressed(e -> {
             if(e.getCode() == KeyCode.UP && snake.getDirection() != Direction.DOWN && stearing == false){
+                System.out.println(snake.getHeadLocation());
+                System.out.println(board.getFood().getLocation());
                 snake.setDirection(Direction.UP);
                 stearing = true;
             } else if(e.getCode() == KeyCode.DOWN && snake.getDirection() != Direction.UP && stearing == false){
@@ -153,6 +153,19 @@ public class Game{
     }
 
 
+    private void rotate(GraphicsContext gc, double angle, double px, double py) {
+        Rotate r = new Rotate(angle, px, py);
+        gc.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
+    }
+
+    private void drawRotatedImage(GraphicsContext gc, Image image, double angle, double tlpx, double tlpy, int height, int width) {
+        gc.save(); // saves the current state on stack, including the current transform
+        rotate(gc, angle, tlpx + height / 2, tlpy + width / 2);
+        gc.drawImage(image, tlpx, tlpy, height, width);
+        gc.restore(); // back to original state (before rotation)
+    }
+
+
     private void increasePoints(){
         points += 20;
     }
@@ -188,13 +201,18 @@ public class Game{
         javafx.scene.image.Image head = new Image("/game/snakehead.png");
         javafx.scene.image.Image body = new Image("/game/snakebody.png");
         javafx.scene.image.Image snakeTail = new Image("/game/snaketail.png");
-        context.setFill(new ImagePattern(head));
-        context.fillRect(snake.getHeadLocation().getX(), snake.getHeadLocation().getY(), snake.getBlockSize(), snake.getBlockSize());
-
+        if(snake.getDirection() == Direction.UP){
+            drawRotatedImage(context, head, 180, snake.getHeadLocation().getX(),snake.getHeadLocation().getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
+        } else if(snake.getDirection() == Direction.DOWN){
+            drawRotatedImage(context, head, 0, snake.getHeadLocation().getX(),snake.getHeadLocation().getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
+        } else if(snake.getDirection() == Direction.RIGHT){
+            drawRotatedImage(context, head, 270, snake.getHeadLocation().getX(),snake.getHeadLocation().getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
+        } else if(snake.getDirection() == Direction.LEFT){
+            drawRotatedImage(context, head, 90, snake.getHeadLocation().getX(),snake.getHeadLocation().getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
+        }
         for(int i=0; i<snake.getTail().size();i++){
             if(i==0){
-                context.setFill(new ImagePattern(body));
-                context.fillRect(tail.get(i).getX(), tail.get(i).getY(), snake.getBlockSize(), snake.getBlockSize());
+                drawRotatedImage(context, body, 0, tail.get(i).getX(), tail.get(i).getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
             } else {
                 if(i < tail.size() - 1){
                     if (curveLeftTop(tail, i)) {
@@ -208,6 +226,10 @@ public class Game{
                     } else {
                         context.setFill(new ImagePattern(body));
                         context.fillRect(tail.get(i).getX(), tail.get(i).getY(), snake.getBlockSize(), snake.getBlockSize());
+                    }
+
+                    if (tail.get(i).getX() == tail.get(i - 1).getX() && tail.get(i).getY() == tail.get(i + 1).getY()) {
+                        drawRotatedImage(context, body, 90, tail.get(i).getX(), tail.get(i).getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
                     }
                 } else {
                     context.setFill(new ImagePattern(snakeTail));
@@ -255,5 +277,4 @@ public class Game{
             }
         }
     }
-
 }
