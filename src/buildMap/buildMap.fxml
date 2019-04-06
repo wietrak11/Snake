@@ -75,9 +75,6 @@
     </GridPane>
 
     <GridPane fx:id="board" maxHeight="600" maxWidth="720" minHeight="600" minWidth="720" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-      <GridPane.margin>
-         <Insets />
-      </GridPane.margin>
     </GridPane>
 
 </GridPane>

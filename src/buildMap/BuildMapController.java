@@ -43,6 +43,13 @@ public class BuildMapController {
         }
     }
 
+    public void setMouseEnterListener(){
+        board.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                me -> {
+                    //tileArray[(int) (me.getX() / TILE_WIDTH)][(int) (me.getY() / TILE_HEIGHT)].getPane().
+                });
+    }
+
     public void setMouseClickedListener(){
         board.addEventHandler(MouseEvent.MOUSE_CLICKED,
                 me -> {
@@ -181,7 +188,8 @@ public class BuildMapController {
     public void setSnake(MouseEvent mouseEvent){
         if(snakeSetting == false){
             snakeSetting = true;
-            setSnakeButton.setStyle("-fx-text-fill: #7e3100;");
+            setSnakeButton.setStyle("-fx-text-fill: #E8521E;" +
+                    "-fx-text-effect: dropshadow(one-pass-box, #917528, 10, 10.0, 20, 40);");
         }
         else{
             snakeSetting=false;

@@ -140,4 +140,6 @@
 }
 #led{
     -fx-color: red;
+    -fx-text-effect: dropshadow(one-pass-box, #917528, 1, 1.0, 0, 4);
+        -fx-effect: dropshadow(one-pass-box, #917528, 1, 1.0, 0, 4);
 }
