@@ -19,9 +19,11 @@ public class BuildMapController {
     private Stage stage;
     private Tile[][] tileArray = new Tile[BOARD_TILE_WIDTH][BOARD_TILE_HEIGHT];
     private int selectedSizeOfBoard = 3;
+    private boolean snakeSetting = false;
     @FXML private GridPane board;
     @FXML private Button smallerButton;
     @FXML private Button biggerButton;
+    @FXML private Button setSnakeButton;
     @FXML private Label sizeInfo;
 
     public void setGrid(){
@@ -177,7 +179,14 @@ public class BuildMapController {
     }
 
     public void setSnake(MouseEvent mouseEvent){
-
+        if(snakeSetting == false){
+            snakeSetting = true;
+            setSnakeButton.setStyle("-fx-text-fill: #7e3100;");
+        }
+        else{
+            snakeSetting=false;
+            setSnakeButton.setStyle("-fx-text-fill: #223D35;");
+        }
     }
 
     public void load(MouseEvent mouseEvent){
