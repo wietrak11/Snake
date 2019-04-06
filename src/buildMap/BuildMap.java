@@ -24,6 +24,7 @@ public class BuildMap {
         buildMapControllerHandle.setGrid();
         buildMapControllerHandle.setMouseClickedListener();
         buildMapControllerHandle.setMouseDraggedListener();
+        buildMapControllerHandle.initiateEventHandlers();
 
         Scene scene = new Scene(root,800,800);
         scene.getStylesheets().add("buildMap/buildMap.css");
