@@ -22,7 +22,7 @@
     <columnConstraints>
         <ColumnConstraints percentWidth="5" />
         <ColumnConstraints percentWidth="90" />
-        <ColumnConstraints percentWidth="4" />
+        <ColumnConstraints percentWidth="5" />
     </columnConstraints>
 
     <GridPane maxHeight="152" maxWidth="720" minHeight="152" minWidth="720" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
@@ -48,13 +48,13 @@
         </VBox>
 
         <VBox id="info" alignment="CENTER" minHeight="36" minWidth="230.4" GridPane.columnIndex="2">
-            <Label id="infoText">Size</Label>
+            <Label id="infoText" fx:id="sizeInfo">Size - 40x40</Label>
         </VBox>
 
         <HBox alignment="CENTER" spacing="6.2" minHeight="76.8" minWidth="230.4" GridPane.columnIndex="2" GridPane.rowIndex="2">
-            <Button id="sizeButton" onMouseClicked="#set20" minWidth="72.66" maxHeight="96" minHeight="96">20x20</Button>
-            <Button id="sizeButton" onMouseClicked="#set30" minWidth="72.66" maxHeight="96" minHeight="96">30x30</Button>
-            <Button id="sizeButton" onMouseClicked="#set40" minWidth="72.66" maxHeight="96" minHeight="96">40x40</Button>
+            <Button id="sizeButton" onMouseClicked="#clearBoard" minWidth="72.66" maxHeight="96" minHeight="96">Clear</Button>
+            <Button id="sizeButton" fx:id="smallerButton" onMouseClicked="#setSmallerSize" minWidth="72.66" maxHeight="96" minHeight="96">20x20</Button>
+            <Button id="sizeButton" fx:id="biggerButton" onMouseClicked="#setBiggerSize" minWidth="72.66" maxHeight="96" minHeight="96">30x30</Button>
         </HBox>
 
         <Button id="button" minWidth="230.4" minHeight="45.6" onMouseClicked="#setSnake" text="Set snake position" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
@@ -77,6 +77,7 @@
     <GridPane fx:id="board" maxHeight="600" maxWidth="720" minHeight="600" minWidth="720" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
       <GridPane.margin>
          <Insets />
-      </GridPane.margin></GridPane>
+      </GridPane.margin>
+    </GridPane>
 
 </GridPane>
