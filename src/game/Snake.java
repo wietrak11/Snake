@@ -86,8 +86,14 @@ public class Snake {
         return isCollision;
     }
     public void addTailSegment() {
-        tail.add(0, new Point(headLocation.getX(), headLocation.getY()));
+        if(tail.isEmpty()){
+            tail.add(new Point(headLocation.getX(), headLocation.getY()));
+        } else{
+            tail.add(new Point(tail.get(tail.size() - 1).getX(), tail.get(tail.size() - 1).getY()));
+        }
+/*
         System.out.println("Add tail segment");
+*/
     }
 
     public void setDirection(Direction myDirection) {
