@@ -107,6 +107,7 @@ public class Game{
                     drawWhite();
                     drawSnake();
                     drawFood();
+                    drawPoints();
                 }
             }
         };
