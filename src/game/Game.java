@@ -6,10 +6,8 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
 import javafx.scene.canvas.*;
 import javafx.scene.paint.Color;
@@ -17,7 +15,6 @@ import javafx.stage.WindowEvent;
 import java.util.*;
 import java.util.List;
 import javafx.scene.transform.Rotate;
-import javafx.scene.image.Image;
 
 public class Game{
 
@@ -213,10 +210,10 @@ public class Game{
 
     private void drawSnake() {
         List<Point> tail = snake.getTail();
-        javafx.scene.image.Image head = new Image("/game/snakehead.png");
-        javafx.scene.image.Image body = new Image("/game/snakebody.png");
-        javafx.scene.image.Image snakeTail = new Image("/game/snaketail.png");
-        javafx.scene.image.Image snakeBodyCurve = new Image("/game/snakebodycurve.png");
+        javafx.scene.image.Image head = new Image("/image/snakehead.png");
+        javafx.scene.image.Image body = new Image("/image/snakebody.png");
+        javafx.scene.image.Image snakeTail = new Image("/image/snaketail.png");
+        javafx.scene.image.Image snakeBodyCurve = new Image("/image/snakebodycurve.png");
         checkDrawDirection(head, snake.getHeadLocation());
         for(int i=0; i<snake.getTail().size();i++){
             if(i==0){
@@ -228,13 +225,13 @@ public class Game{
                     } else if(tail.get(i).getX() == tail.get(i - 1).getX() && tail.get(i).getY() - GRID_BLOCK_SIZE == tail.get(i + 1).getY() || tail.get(i).getX() == tail.get(i - 1).getX() && tail.get(i).getY() + GRID_BLOCK_SIZE == tail.get(i + 1).getY() ) {
                         drawRotatedImage(context, body, 90, tail.get(i).getX(), tail.get(i).getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
                     }
-                    if (curveLeftTop(tail, i) ) {
-                        drawRotatedImage(context, snakeBodyCurve, 90, tail.get(i).getX(), tail.get(i).getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
-                    } else if (curveLeftBottom(tail, i)) {
-                        drawRotatedImage(context, snakeBodyCurve, 180, tail.get(i).getX(), tail.get(i).getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
-                    } else if (curveRightTop(tail, i)) {
+                    if (curveLeftTop(tail, i)) {
                         drawRotatedImage(context, snakeBodyCurve, 0, tail.get(i).getX(), tail.get(i).getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
-                    } else if (curveRightBottom(tail, i) || curveTopRight(tail, i)) {
+                    } else if (curveRightTop(tail, i) || curveBottomLeft(tail, i)) {
+                        drawRotatedImage(context, snakeBodyCurve, 90, tail.get(i).getX(), tail.get(i).getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
+                    } else if (curveLeftBottom(tail, i) || curveTopLeft(tail, i)) {
+                        drawRotatedImage(context, snakeBodyCurve, 180, tail.get(i).getX(), tail.get(i).getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
+                    }  else if (curveRightBottom(tail, i) || curveTopRight(tail, i)) {
                         drawRotatedImage(context, snakeBodyCurve, 270, tail.get(i).getX(), tail.get(i).getY(), GRID_BLOCK_SIZE, GRID_BLOCK_SIZE);
                     } else {
                         /*context.setFill(new ImagePattern(body));
@@ -266,23 +263,28 @@ public class Game{
 
     }
 
-    private boolean curveRightTop(List<Point> tail, int i) {
+    private boolean curveLeftTop(List<Point> tail, int i) {
         return tail.get(i).getX() + GRID_BLOCK_SIZE == tail.get(i - 1).getX() && tail.get(i).getY() + GRID_BLOCK_SIZE == tail.get(i + 1).getY();
-
     }
 
     private boolean curveTopRight(List<Point> tail, int i) {
         return tail.get(i).getX() + GRID_BLOCK_SIZE == tail.get(i + 1).getX() && tail.get(i).getY() - GRID_BLOCK_SIZE == tail.get(i - 1).getY();
-
     }
 
     private boolean curveLeftBottom(List<Point> tail, int i) {
         return tail.get(i).getX() - GRID_BLOCK_SIZE == tail.get(i - 1).getX() && tail.get(i).getY() - GRID_BLOCK_SIZE == tail.get(i + 1).getY();
-
     }
 
-    private boolean curveLeftTop(List<Point> tail, int i) {
+    private boolean curveBottomLeft(List<Point> tail, int i) {
+        return tail.get(i).getX() - GRID_BLOCK_SIZE == tail.get(i + 1).getX() && tail.get(i).getY() + GRID_BLOCK_SIZE == tail.get(i - 1).getY();
+    }
+
+    private boolean curveRightTop(List<Point> tail, int i) {
         return tail.get(i).getX() - GRID_BLOCK_SIZE == tail.get(i - 1).getX() && tail.get(i).getY() + GRID_BLOCK_SIZE == tail.get(i + 1).getY();
+    }
+
+    private boolean curveTopLeft(List<Point> tail, int i) {
+        return tail.get(i).getX() + GRID_BLOCK_SIZE == tail.get(i - 1).getX() && tail.get(i).getY() - GRID_BLOCK_SIZE == tail.get(i + 1).getY();
     }
 
     private void checkNodePosition(){
