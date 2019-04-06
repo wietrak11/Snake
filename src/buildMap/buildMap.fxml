@@ -57,7 +57,7 @@
             <Button id="sizeButton" fx:id="biggerButton" onMouseClicked="#setBiggerSize" minWidth="72.66" maxHeight="96" minHeight="96">30x30</Button>
         </HBox>
 
-        <Button id="button" minWidth="230.4" minHeight="45.6" onMouseClicked="#setSnake" text="Set snake position" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
+        <Button id="button" fx:id="setSnakeButton" minWidth="230.4" minHeight="45.6" onMouseClicked="#setSnake" text="Set snake position" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
 
         <GridPane maxHeight="97.28" maxWidth="230.4" minHeight="97.28" minWidth="230.4" GridPane.rowIndex="2" GridPane.columnIndex="4">
             <rowConstraints>
