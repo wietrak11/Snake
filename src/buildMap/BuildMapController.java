@@ -1,8 +1,11 @@
 package buildMap;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -32,8 +35,8 @@ public class BuildMapController {
                 Tile tile = new Tile(new Pane(), i, j, 0);
                 tileArray[i][j] = tile;
                 tileArray[i][j].getPane().setStyle("-fx-background-color: lightgrey;" +
-                                                   "-fx-border-color: black;" +
-                                                   "-fx-border-width: 0.3px 0.3px 0.3px 0.3px;");
+                        "-fx-border-color: black;" +
+                        "-fx-border-width: 0.3px 0.3px 0.3px 0.3px;");
                 tileArray[i][j].getPane().setPrefWidth(TILE_WIDTH);
                 tileArray[i][j].getPane().setPrefHeight(TILE_HEIGHT);
                 GridPane.setConstraints(tileArray[i][j].getPane(),i,j);
@@ -43,11 +46,48 @@ public class BuildMapController {
         }
     }
 
-    public void setMouseEnterListener(){
-        board.addEventHandler(MouseEvent.MOUSE_ENTERED,
-                me -> {
-                    //tileArray[(int) (me.getX() / TILE_WIDTH)][(int) (me.getY() / TILE_HEIGHT)].getPane().
-                });
+    public void enableMouseEnterListener(){
+        for(int i=0 ; i<BOARD_TILE_HEIGHT ; i++){
+            for(int j=0 ; j<BOARD_TILE_WIDTH ; j++){
+
+                int finalI = i;
+                int finalJ = j;
+                Image image = null;
+                image = new Image("/image/snakebody.png");
+                ImageView imageView = new ImageView(image);
+                imageView.setFitHeight(TILE_HEIGHT);
+                imageView.setFitWidth(TILE_WIDTH);
+                imageView.setPreserveRatio(true);
+
+                final EventHandler<MouseEvent> mouseEventHandler1 =
+                        new EventHandler<MouseEvent>() {
+                            public void handle(final MouseEvent mouseEvent) {
+
+                                tileArray[finalI][finalJ].getPane().getChildren().add(imageView);
+                                System.out.println("au");
+                            }
+                        };
+
+                final EventHandler<MouseEvent> mouseEventHandler2 =
+                        new EventHandler<MouseEvent>() {
+                            public void handle(final MouseEvent mouseEvent) {
+                                tileArray[finalI][finalJ].getPane().getChildren().remove(imageView);
+                                System.out.println("au");
+                            }
+                        };
+
+                tileArray[i][j].getPane().addEventHandler(MouseEvent.MOUSE_ENTERED,mouseEventHandler1);
+                tileArray[i][j].getPane().addEventHandler(MouseEvent.MOUSE_EXITED,mouseEventHandler2);
+            }
+        }
+    }
+
+    public void disableMouseEnterListener(){
+        for(int i=0 ; i<BOARD_TILE_HEIGHT ; i++){
+            for(int j=0 ; j<BOARD_TILE_WIDTH ; j++){
+                //tileArray[i][j].getPane().removeEventHandler(MouseEvent.MOUSE_ENTERED,mouseEventHandler);
+            }
+        }
     }
 
     public void setMouseClickedListener(){
@@ -76,14 +116,14 @@ public class BuildMapController {
                     if(me.getX()>=0 && me.getX()<720 && me.getY()>=0 && me.getY()<600){
                         if(me.isPrimaryButtonDown()) {
                             tileArray[(int) (me.getX() / TILE_WIDTH)][(int) (me.getY() / TILE_HEIGHT)].getPane().setStyle("-fx-background-color: #162630;" +
-                                                                                                                          "-fx-border-color: black;" +
-                                                                                                                          "-fx-border-width: 0.3px 0.3px 0.3px 0.3px;");
+                                    "-fx-border-color: black;" +
+                                    "-fx-border-width: 0.3px 0.3px 0.3px 0.3px;");
                             tileArray[(int) (me.getX() / TILE_WIDTH)][(int) (me.getY() / TILE_HEIGHT)].setState(1);
                         }
                         if(me.isSecondaryButtonDown()) {
                             tileArray[(int) (me.getX() / TILE_WIDTH)][(int) (me.getY() / TILE_HEIGHT)].getPane().setStyle("-fx-background-color: lightgrey;" +
-                                                                                                                          "-fx-border-color: black;" +
-                                                                                                                          "-fx-border-width: 0.3px 0.3px 0.3px 0.3px;");
+                                    "-fx-border-color: black;" +
+                                    "-fx-border-width: 0.3px 0.3px 0.3px 0.3px;");
                             tileArray[(int) (me.getX() / TILE_WIDTH)][(int) (me.getY() / TILE_HEIGHT)].setState(0);
                         }
                     }
@@ -188,12 +228,13 @@ public class BuildMapController {
     public void setSnake(MouseEvent mouseEvent){
         if(snakeSetting == false){
             snakeSetting = true;
-            setSnakeButton.setStyle("-fx-text-fill: #E8521E;" +
-                    "-fx-text-effect: dropshadow(one-pass-box, #917528, 10, 10.0, 20, 40);");
+            setSnakeButton.setStyle("-fx-text-fill: #E8521E;");
+            enableMouseEnterListener();
         }
         else{
             snakeSetting=false;
             setSnakeButton.setStyle("-fx-text-fill: #223D35;");
+            disableMouseEnterListener();
         }
     }
 
