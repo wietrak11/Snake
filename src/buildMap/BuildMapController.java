@@ -23,11 +23,39 @@ public class BuildMapController {
     private Tile[][] tileArray = new Tile[BOARD_TILE_WIDTH][BOARD_TILE_HEIGHT];
     private int selectedSizeOfBoard = 3;
     private boolean snakeSetting = false;
+
+    EventHandler<MouseEvent> mouseAddSnakeOnEnter = null;
+    EventHandler<MouseEvent> mouseRemoveSnakeOnExit = null;
+
     @FXML private GridPane board;
     @FXML private Button smallerButton;
     @FXML private Button biggerButton;
     @FXML private Button setSnakeButton;
     @FXML private Label sizeInfo;
+
+    public void initiateEventHandlers(){
+
+        Image image = null;
+        image = new Image("/image/snakebody.png");
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(TILE_HEIGHT);
+        imageView.setFitWidth(TILE_WIDTH);
+        imageView.setPreserveRatio(true);
+
+        mouseAddSnakeOnEnter = new EventHandler<MouseEvent>() {
+            public void handle(final MouseEvent mouseEvent) {
+                Pane x = (Pane) mouseEvent.getTarget();
+                x.getChildren().add(imageView);
+            }
+        };
+
+        mouseRemoveSnakeOnExit = new EventHandler<MouseEvent>() {
+            public void handle(final MouseEvent mouseEvent) {
+                Pane x = (Pane) mouseEvent.getTarget();
+                x.getChildren().remove(imageView);
+            }
+        };
+    }
 
     public void setGrid(){
         for(int i = 0; i< BOARD_TILE_WIDTH; i++){
@@ -49,35 +77,8 @@ public class BuildMapController {
     public void enableMouseEnterListener(){
         for(int i=0 ; i<BOARD_TILE_HEIGHT ; i++){
             for(int j=0 ; j<BOARD_TILE_WIDTH ; j++){
-
-                int finalI = i;
-                int finalJ = j;
-                Image image = null;
-                image = new Image("/image/snakebody.png");
-                ImageView imageView = new ImageView(image);
-                imageView.setFitHeight(TILE_HEIGHT);
-                imageView.setFitWidth(TILE_WIDTH);
-                imageView.setPreserveRatio(true);
-
-                final EventHandler<MouseEvent> mouseEventHandler1 =
-                        new EventHandler<MouseEvent>() {
-                            public void handle(final MouseEvent mouseEvent) {
-
-                                tileArray[finalI][finalJ].getPane().getChildren().add(imageView);
-                                System.out.println("au");
-                            }
-                        };
-
-                final EventHandler<MouseEvent> mouseEventHandler2 =
-                        new EventHandler<MouseEvent>() {
-                            public void handle(final MouseEvent mouseEvent) {
-                                tileArray[finalI][finalJ].getPane().getChildren().remove(imageView);
-                                System.out.println("au");
-                            }
-                        };
-
-                tileArray[i][j].getPane().addEventHandler(MouseEvent.MOUSE_ENTERED,mouseEventHandler1);
-                tileArray[i][j].getPane().addEventHandler(MouseEvent.MOUSE_EXITED,mouseEventHandler2);
+                tileArray[i][j].getPane().addEventHandler(MouseEvent.MOUSE_ENTERED, mouseAddSnakeOnEnter);
+                tileArray[i][j].getPane().addEventHandler(MouseEvent.MOUSE_EXITED, mouseRemoveSnakeOnExit);
             }
         }
     }
@@ -85,7 +86,8 @@ public class BuildMapController {
     public void disableMouseEnterListener(){
         for(int i=0 ; i<BOARD_TILE_HEIGHT ; i++){
             for(int j=0 ; j<BOARD_TILE_WIDTH ; j++){
-                //tileArray[i][j].getPane().removeEventHandler(MouseEvent.MOUSE_ENTERED,mouseEventHandler);
+                tileArray[i][j].getPane().removeEventHandler(MouseEvent.MOUSE_ENTERED, mouseAddSnakeOnEnter);
+                tileArray[i][j].getPane().removeEventHandler(MouseEvent.MOUSE_ENTERED, mouseRemoveSnakeOnExit);
             }
         }
     }
