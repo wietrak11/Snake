@@ -12,6 +12,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import gameMenu.GameMenu;
 
+import java.sql.SQLOutput;
+
 public class BuildMapController {
     private int BOARD_TILE_WIDTH = 40;
     private int BOARD_TILE_HEIGHT = 40;
@@ -70,6 +72,13 @@ public class BuildMapController {
                         paneArray[x.getX()+1][x.getY()].getChildren().add(imageView2);
                         paneArray[x.getX()-1][x.getY()].getChildren().add(imageView3);
                     }
+                    else if(x.getY()>0 && x.getY()<BOARD_TILE_HEIGHT-1){
+                        if(x.getState()==0 && paneArray[x.getX()][x.getY()+1].getState()==0 && paneArray[x.getX()][x.getY()-1].getState()==0){
+                            x.getChildren().add(imageView);
+                            paneArray[x.getX()][x.getY()+1].getChildren().add(imageView2);
+                            paneArray[x.getX()][x.getY()-1].getChildren().add(imageView3);
+                        }
+                    }
                 }
                 else if(x.getX()==0 || x.getX()==BOARD_TILE_WIDTH-1){
                     if(x.getY()>0 && x.getY()<BOARD_TILE_HEIGHT-1){
@@ -87,6 +96,31 @@ public class BuildMapController {
             public void handle(final MouseEvent mouseEvent) {
                 CustomPane x = (CustomPane) mouseEvent.getTarget();
 
+                if(x.getX()>0 && x.getX()<BOARD_TILE_WIDTH-1){
+                    if(x.getState()==0 && paneArray[x.getX()+1][x.getY()].getState()==0 && paneArray[x.getX()-1][x.getY()].getState()==0){
+                        x.getChildren().remove(imageView);
+                        paneArray[x.getX()+1][x.getY()].getChildren().remove(imageView2);
+                        paneArray[x.getX()-1][x.getY()].getChildren().remove(imageView3);
+                    }
+                    else if(x.getY()>0 && x.getY()<BOARD_TILE_HEIGHT-1){
+                        if(x.getState()==0 && paneArray[x.getX()][x.getY()+1].getState()==0 && paneArray[x.getX()][x.getY()-1].getState()==0){
+                            x.getChildren().remove(imageView);
+                            paneArray[x.getX()][x.getY()+1].getChildren().remove(imageView2);
+                            paneArray[x.getX()][x.getY()-1].getChildren().remove(imageView3);
+                        }
+                    }
+                }
+                else if(x.getX()==0 || x.getX()==BOARD_TILE_WIDTH-1){
+                    if(x.getY()>0 && x.getY()<BOARD_TILE_HEIGHT-1){
+                        if(x.getState()==0 && paneArray[x.getX()][x.getY()+1].getState()==0 && paneArray[x.getX()][x.getY()-1].getState()==0){
+                            x.getChildren().remove(imageView);
+                            paneArray[x.getX()][x.getY()+1].getChildren().remove(imageView2);
+                            paneArray[x.getX()][x.getY()-1].getChildren().remove(imageView3);
+                        }
+                    }
+                }
+
+                /*
                 if(x.getChildren().contains(imageView)){
                     if(x.getX()==0 || x.getX()==BOARD_TILE_WIDTH-1) {
                         if (x.getY() > 0 && x.getY() < BOARD_TILE_HEIGHT - 1) {
@@ -101,6 +135,8 @@ public class BuildMapController {
                         paneArray[x.getX()-1][x.getY()].getChildren().remove(imageView3);
                     }
                 }
+
+                 */
             }
         };
 
