@@ -22,9 +22,9 @@ public class BuildMap {
         buildMapControllerHandle = (BuildMapController)loader.getController();
         buildMapControllerHandle.setStage(stage);
         buildMapControllerHandle.setGrid();
-        buildMapControllerHandle.setMouseClickedListener();
-        buildMapControllerHandle.setMouseDraggedListener();
         buildMapControllerHandle.initiateEventHandlers();
+        buildMapControllerHandle.enableMouseClickedDraw();
+        buildMapControllerHandle.enableMouseDraggedDraw();
 
         Scene scene = new Scene(root,800,800);
         scene.getStylesheets().add("buildMap/buildMap.css");

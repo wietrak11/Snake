@@ -9,7 +9,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import gameMenu.GameMenu;
 
@@ -26,6 +25,7 @@ public class BuildMapController {
 
     EventHandler<MouseEvent> mouseAddSnakeOnEnter = null;
     EventHandler<MouseEvent> mouseRemoveSnakeOnExit = null;
+    EventHandler<MouseEvent> mouseDraw = null;
 
     @FXML private GridPane board;
     @FXML private Button smallerButton;
@@ -103,6 +103,26 @@ public class BuildMapController {
                 }
             }
         };
+
+        mouseDraw = new EventHandler<MouseEvent>() {
+            public void handle(final MouseEvent event) {
+                if(event.getX()>=0 && event.getX()<720 && event.getY()>=0 && event.getY()<600) {
+                    if (event.getButton().equals(MouseButton.PRIMARY)) {
+                        paneArray[(int) (event.getX() / TILE_WIDTH)][(int) (event.getY() / TILE_HEIGHT)].setStyle("-fx-background-color: #162630;" +
+                                "-fx-border-color: black;" +
+                                "-fx-border-width: 0.3px 0.3px 0.3px 0.3px;");
+                        paneArray[(int) (event.getX() / TILE_WIDTH)][(int) (event.getY() / TILE_HEIGHT)].setState(1);
+                    }
+                    if (event.getButton().equals(MouseButton.SECONDARY)) {
+                        paneArray[(int) (event.getX() / TILE_WIDTH)][(int) (event.getY() / TILE_HEIGHT)].setStyle("-fx-background-color: lightgrey;" +
+                                "-fx-border-color: black;" +
+                                "-fx-border-width: 0.3px 0.3px 0.3px 0.3px;");
+                        paneArray[(int) (event.getX() / TILE_WIDTH)][(int) (event.getY() / TILE_HEIGHT)].setState(0);
+                    }
+                }
+            }
+        };
+
     }
 
     public void setGrid(){
@@ -126,6 +146,8 @@ public class BuildMapController {
             for(int j=0 ; j<BOARD_TILE_WIDTH ; j++){
                 paneArray[i][j].addEventHandler(MouseEvent.MOUSE_ENTERED, mouseAddSnakeOnEnter);
                 paneArray[i][j].addEventHandler(MouseEvent.MOUSE_EXITED, mouseRemoveSnakeOnExit);
+                disableMouseClickedDraw();
+                disableMouseDraggedDraw();
             }
         }
     }
@@ -134,32 +156,24 @@ public class BuildMapController {
         for(int i=0 ; i<BOARD_TILE_HEIGHT ; i++){
             for(int j=0 ; j<BOARD_TILE_WIDTH ; j++){
                 paneArray[i][j].removeEventHandler(MouseEvent.MOUSE_ENTERED, mouseAddSnakeOnEnter);
-                paneArray[i][j].removeEventHandler(MouseEvent.MOUSE_ENTERED, mouseRemoveSnakeOnExit);
+                paneArray[i][j].removeEventHandler(MouseEvent.MOUSE_EXITED, mouseRemoveSnakeOnExit);
+                enableMouseDraggedDraw();
+                enableMouseClickedDraw();
             }
         }
     }
 
-    public void setMouseClickedListener(){
-        board.addEventHandler(MouseEvent.MOUSE_CLICKED,
-                me -> {
-                    if(me.getX()>=0 && me.getX()<720 && me.getY()>=0 && me.getY()<600) {
-                        if (me.getButton().equals(MouseButton.PRIMARY)) {
-                            paneArray[(int) (me.getX() / TILE_WIDTH)][(int) (me.getY() / TILE_HEIGHT)].setStyle("-fx-background-color: #162630;" +
-                                    "-fx-border-color: black;" +
-                                    "-fx-border-width: 0.3px 0.3px 0.3px 0.3px;");
-                            paneArray[(int) (me.getX() / TILE_WIDTH)][(int) (me.getY() / TILE_HEIGHT)].setState(1);
-                        }
-                        if (me.getButton().equals(MouseButton.SECONDARY)) {
-                            paneArray[(int) (me.getX() / TILE_WIDTH)][(int) (me.getY() / TILE_HEIGHT)].setStyle("-fx-background-color: lightgrey;" +
-                                    "-fx-border-color: black;" +
-                                    "-fx-border-width: 0.3px 0.3px 0.3px 0.3px;");
-                            paneArray[(int) (me.getX() / TILE_WIDTH)][(int) (me.getY() / TILE_HEIGHT)].setState(0);
-                        }
-                    }
-                });
+    public void enableMouseClickedDraw(){
+        board.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseDraw);
     }
 
-    public void setMouseDraggedListener(){
+    public void disableMouseClickedDraw(){
+        board.removeEventHandler(MouseEvent.MOUSE_CLICKED, mouseDraw);
+    }
+
+    public void enableMouseDraggedDraw(){
+        board.addEventHandler(MouseEvent.MOUSE_DRAGGED, mouseDraw);
+        /*
         board.addEventHandler(MouseEvent.MOUSE_DRAGGED,
                 me -> {
                     if(me.getX()>=0 && me.getX()<720 && me.getY()>=0 && me.getY()<600){
@@ -177,6 +191,11 @@ public class BuildMapController {
                         }
                     }
                 });
+         */
+    }
+
+    public void disableMouseDraggedDraw(){
+        board.removeEventHandler(MouseEvent.MOUSE_DRAGGED, mouseDraw);
     }
 
     public void back(MouseEvent mouseEvent){
